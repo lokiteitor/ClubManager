@@ -15,11 +15,11 @@ class CreateCuentasTable extends Migration
     {
         Schema::create('cuentas', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('id_cliente')->nullable(false);
+            $table->string('email',64)->nullable(false);
             $table->date('fecha_inicio')->nullable(false);
             $table->date('fecha_fin')->nullable(false);
             $table->boolean('estado')->nullable(false);
-            $table->float('subtotal',2)->nullable(false);
+            $table->float('subtotal')->nullable(false);
             $table->timestamps();
         });
     }

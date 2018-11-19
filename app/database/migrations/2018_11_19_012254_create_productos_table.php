@@ -17,8 +17,8 @@ class CreateProductosTable extends Migration
             $table->increments('id');
             $table->string('nombre',30)->nullable(false);
             $table->string('descripcion')->nullable(false);
-            $table->float('precio',2)->nullable(false);
-            $table->float('costo',2)->nullable(false);
+            $table->float('precio')->nullable(false);
+            $table->float('costo')->nullable(false);
             $table->timestamps();
         });
     }

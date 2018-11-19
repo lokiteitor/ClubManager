@@ -12,6 +12,6 @@ $factory->define(App\Cuenta::class, function (Faker $faker) {
         'fecha_inicio' => $inicio,
         'fecha_fin' => $fin,
         'estado' => $faker->boolean(90),
-        'subtotal' => $faker->randomFloat(2)
+        'subtotal' => $faker->randomFloat(2,1200,11000)
     ];
 });

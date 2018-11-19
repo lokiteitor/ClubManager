@@ -4,7 +4,7 @@ use Faker\Generator as Faker;
 
 $factory->define(App\Clase::class, function (Faker $faker) {
     $horaFin = $faker->time();
-    $horaInicio = $faker-time($max=$horaFin);
+    $horaInicio = $faker->time($max=$horaFin);
     return [
         //
         'hora_inicio' => $horaInicio,

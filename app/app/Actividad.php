@@ -12,6 +12,6 @@ class Actividad extends Model
 
     public function clases()
     {
-        return $this->hasMany('App\Clase','id');
+        return $this->hasMany('App\Clase','id_actividad','id');
     }
 }

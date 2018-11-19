@@ -11,7 +11,7 @@ $factory->define(App\Usuario::class, function (Faker $faker) {
         'ap_materno' => $faker->lastName,
         'direccion' => $faker->address,
         'password' => $faker->password,
-        'telefono' => $faker->phoneNumber,
+        'telefono' => $faker->e164PhoneNumber,
         'empleado' => $faker->randomElement(
             ['empleado','administrador','cliente'])
     ];

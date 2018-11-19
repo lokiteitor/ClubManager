@@ -7,7 +7,7 @@ $factory->define(App\Producto::class, function (Faker $faker) {
         //
         'nombre' => $faker->word,
         'descripcion' => $faker->text,
-        'precio' => $faker->randomFloat(2),
-        'costo' => $faker->randomFloat(2)
+        'precio' => $faker->randomFloat(2,10,300),
+        'costo' => $faker->randomFloat(2,10,300)
     ];
 });

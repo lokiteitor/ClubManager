@@ -28,7 +28,7 @@ class Usuario extends Model
         return $this->hasMany('App\Cuenta','email','email');
     }
 
-    public function clase()
+    public function clases()
     {
         return $this->hasMany('App\Clase','email','email');
     }

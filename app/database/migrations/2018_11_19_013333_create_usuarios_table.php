@@ -14,14 +14,16 @@ class CreateUsuariosTable extends Migration
     public function up()
     {
         Schema::create('usuarios', function (Blueprint $table) {
-            $table->string('email',32)->nullable(false)->unique();
+            $table->string('email',64)->nullable(false)->unique();
             $table->string('nombre',30)->nullable(false);
             $table->string('ap_paterno',30)->nullable(false);
             $table->string('ap_materno',30)->nullable(false);
-            $table->string('direccion',60)->nullable(false);
-            $table->string('password',16)->nullable(false);
-            $table->string('telefono',12)->nullable(false);
-            $table->enum('empleado',array('empleado','administrador','cliente'))->nullable(false);                
+            $table->string('direccion',120)->nullable(false);
+            $table->string('password',32)->nullable(false);
+            $table->string('telefono')->nullable(false);
+            $table->enum('empleado',
+            array('empleado','administrador','instructor',
+            'cliente'))->nullable(false);                
             $table->timestamps();
             $table->primary('email');
         });
