@@ -1,0 +1,38 @@
+version: '2'
+services:
+    DB_CLUB:
+        image: mariadb:latest
+        container_name: DB_CLUB
+        ports:
+            - 3306
+        environment:
+          MYSQL_USER: app
+          MYSQL_PASSWORD: pass
+          MYSQL_ROOT_PASSWORD: passr
+          MYSQL_DATABASE: clubdb
+
+        volumes:
+            - ./db:/var/lib/mysql      
+
+    HTTP_CLUB:
+        image: lokiteitor:laravel
+        build:
+            context: ./laravel
+        volumes:
+            - ./../app:/usr/local/apache2/htdocs
+            - ./logs/:/var/log/apache2/
+            - ./apache/000-default.conf:/usr/local/apache2/conf/extra/httpd-vhosts.conf
+        container_name: HTTP_CLUB
+        links:
+            - DB_CLUB:mysql
+        ports:
+            - "80:80"
+            - "443:443"
+
+    proxy-inverse:
+        image: nginx:alpine
+        volumes:
+            - './nginx/default.conf:/etc/nginx/conf.d/default.conf:ro'
+        container_name: proxy_club
+        links:
+            - HTTP_CLUB:club
