@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Usuario;
 use Illuminate\Http\Request;
+use App\Http\Resources\Usuario as UsuarioResource;
+use App\Usuario;
 
 class UsuarioController extends Controller
 {
@@ -15,16 +16,8 @@ class UsuarioController extends Controller
     public function index()
     {
         //
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
+        return UsuarioResource::collection(Usuario::paginate(15));
+        
     }
 
     /**
@@ -36,50 +29,59 @@ class UsuarioController extends Controller
     public function store(Request $request)
     {
         //
+        $usuario = Usuario::create([
+            'email' => $request->email,
+            'nombre' => $request->nombre,
+            'ap_paterno' => $request->ap_paterno,
+            'ap_materno' => $request->ap_materno,
+            'direccion' => $request->direccion,
+            'password' => $request->password,
+            'telefono' => $request->telefono,
+            'empleado' => $request->tipo
+        ]);
+        return new UsuarioResource($usuario);
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Usuario  $usuario
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Usuario $usuario)
+    public function show($id)
     {
         //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Usuario  $usuario
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Usuario $usuario)
-    {
-        //
+        return new UsuarioResource(Usuario::findOrFail($id));
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Usuario  $usuario
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Usuario $usuario)
+    public function update(Request $request, $id)
     {
         //
+        $usuario = Usuario::findOrFail($id);
+        $usuario->update($request->only([
+            'email','nombre','ap_paterno','ap_materno','direccion',
+            'password','telefono'
+        ]));
+        return new UsuarioResource($usuario);
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Usuario  $usuario
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Usuario $usuario)
+    public function destroy($id)
     {
         //
+        Usuario::findOrFail($id)->delete();
+        return response()->json(null, 204);
     }
 }

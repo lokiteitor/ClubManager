@@ -2,31 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Clase;
 use Illuminate\Http\Request;
+use App\Http\Resources\Clase as ClaseResource;
+use App\Clase;
 
 class ClaseController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        //
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
     /**
      * Store a newly created resource in storage.
      *
@@ -36,50 +17,59 @@ class ClaseController extends Controller
     public function store(Request $request)
     {
         //
+        $clase = Clase::create([
+            'id_actividad' => $request->id_actividad,
+            'hora_inicio' => $request->hinicio,
+            'hora_fin' => $request->hfin,
+            'dia_semana' => $request->dia,
+            'email' => $request->profesor
+        ]);
+        
+        return new ClaseResource($clase);
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Clase  $clase
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Clase $clase)
+    public function show($id)
     {
         //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Clase  $clase
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Clase $clase)
-    {
-        //
+        return ClaseResource(Clase::findOrFail($id));
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Clase  $clase
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Clase $clase)
+    public function update(Request $request, $id)
     {
         //
+        $clase = Clase::findOrFail($id);
+        $clase->update($request->only([                        
+            'hora_inicio' => $request->hinicio,
+            'hora_fin' => $request->hfin,
+            'dia_semana' => $request->dia,
+            'email' => $request->instructor
+        ]));
+        return new ClaseResource($clase);
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Clase  $clase
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Clase $clase)
+    public function destroy($id)
     {
         //
+        Clase::findOrFail($id)->delete();
+        return response()->json(null, 204);
     }
 }

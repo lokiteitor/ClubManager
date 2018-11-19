@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Producto;
 use Illuminate\Http\Request;
+use App\Http\Resources\Producto as ProductoResource;
+use App\Producto;
 
 class ProductoController extends Controller
 {
@@ -15,16 +16,7 @@ class ProductoController extends Controller
     public function index()
     {
         //
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
+        return ProductoResource::collection(Producto::paginate(15));
     }
 
     /**
@@ -36,50 +28,55 @@ class ProductoController extends Controller
     public function store(Request $request)
     {
         //
+        $producto = Producto::create([
+            'nombre' => $request->nombre,
+            'descripcion' => $request->descripcion,
+            'precio' => $request->precio,
+            'costo' => $request->costo
+        ]);
+        return new ProductoResource($producto);
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Producto  $producto
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Producto $producto)
+    public function show($id)
     {
         //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Producto  $producto
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Producto $producto)
-    {
-        //
+        return new ProductoResource(Producto::findOrFail($id));
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Producto  $producto
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Producto $producto)
+    public function update(Request $request, $id)
     {
         //
+        $producto = Producto::findOrFail($id);
+        $producto->update($request->only([
+            'nombre','descripcion','precio','costo'
+        ]));
+
+        return new ProductoResource($producto);
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Producto  $producto
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Producto $producto)
+    public function destroy($id)
     {
         //
+        Producto::findOrFail($id)->delete();
+        return response()->json(null, 204);
     }
 }

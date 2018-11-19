@@ -2,30 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use App\Cuenta;
 use Illuminate\Http\Request;
+use App\Http\Resources\Cuenta as CuentaResource;
+use App\Cuenta;
 
 class CuentaController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        //
-    }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
 
     /**
      * Store a newly created resource in storage.
@@ -36,50 +19,53 @@ class CuentaController extends Controller
     public function store(Request $request)
     {
         //
+        $cuenta = Cuenta::create([
+            'email' => $request->cliente,
+            'fecha_inicio' => $request->finicio,
+            'fecha_fin' => $request->ffin,
+            'estado' => $request->estado,
+            'subtotal' => $request->subtotal
+        ]);
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Cuenta  $cuenta
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Cuenta $cuenta)
+    public function show($id)
     {
         //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Cuenta  $cuenta
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Cuenta $cuenta)
-    {
-        //
+        return new CuentaResource(Cuenta::findOrFail($id));
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Cuenta  $cuenta
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Cuenta $cuenta)
+    public function update(Request $request, $id)
     {
         //
+        $cuenta = Cuenta::findOrFail($id);
+        $cuenta->update($request->only/([
+            'fecha_inicio','fecha_fin','estado','subtotal'
+        ]));
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Cuenta  $cuenta
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Cuenta $cuenta)
+    public function destroy($id)
     {
         //
+        Cuenta::findOrFail($id)->delete();
+        return response()->json(null, 204);
     }
 }

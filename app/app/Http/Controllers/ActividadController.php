@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Actividad;
 use Illuminate\Http\Request;
+use App\Http\Resources\Activadad as ActividadResource;
+use App\Actividad;
 
 class ActividadController extends Controller
 {
@@ -15,16 +16,7 @@ class ActividadController extends Controller
     public function index()
     {
         //
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
+        return ActividadResource::collection(Actividad::paginate(15));
     }
 
     /**
@@ -36,50 +28,55 @@ class ActividadController extends Controller
     public function store(Request $request)
     {
         //
+        $actividad = Actividad::create([
+            'nombre' => $request->nombre,
+            'descripcion' => $request->descripcion,
+            'fecha_inicio' => $request->finicio,
+            'lugar' => $request->lugar
+        ]);
+
+        return new ActividadResource($actividad);
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Actividad  $actividad
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Actividad $actividad)
+    public function show($id)
     {
         //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Actividad  $actividad
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Actividad $actividad)
-    {
-        //
+        return ActividadResource(Actividad::findOrFail($id));
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Actividad  $actividad
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Actividad $actividad)
+    public function update(Request $request, $id)
     {
         //
+        $actividad = Actividad::findOrFail($id);
+        $actividad->update($request->only([
+            'nombre','descripcion','fecha_inicio','fecha_fin','lugar'
+        ]));
+        return new ActividadResource($actividad);
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Actividad  $actividad
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Actividad $actividad)
+    public function destroy($id)
     {
         //
+        Actividad::findOrFail($id)->delete();
+        return response()->json(null, 204);
     }
 }
