@@ -807,6 +807,304 @@
 					"response": []
 				}
 			]
+		},
+		{
+			"name": "Consumo",
+			"item": [
+				{
+					"name": "club.com/api/usuario/nicolas.neoma@example.org/consumo",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "club.com/api/usuario/nicolas.neoma@example.org/consumo",
+							"host": [
+								"club",
+								"com"
+							],
+							"path": [
+								"api",
+								"usuario",
+								"nicolas.neoma@example.org",
+								"consumo"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "club.com/api/usuario/nicolas.neoma@example.org/consumo?id_producto=2&cantidad=10",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "club.com/api/usuario/nicolas.neoma@example.org/consumo/808",
+							"host": [
+								"club",
+								"com"
+							],
+							"path": [
+								"api",
+								"usuario",
+								"nicolas.neoma@example.org",
+								"consumo",
+								"808"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "club.com/api/usuario/nicolas.neoma@example.org/consumo/808?id_producto=5&cantidad=1000",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "club.com/api/usuario/nicolas.neoma@example.org/consumo/808?id_producto=5&cantidad=1000",
+							"host": [
+								"club",
+								"com"
+							],
+							"path": [
+								"api",
+								"usuario",
+								"nicolas.neoma@example.org",
+								"consumo",
+								"808"
+							],
+							"query": [
+								{
+									"key": "id_producto",
+									"value": "5"
+								},
+								{
+									"key": "cantidad",
+									"value": "1000"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "club.com/api/usuario/nicolas.neoma@example.org/consumo?producto=5&cantidad=1000",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "club.com/api/usuario/nicolas.neoma@example.org/consumo?producto=5&cantidad=1000",
+							"host": [
+								"club",
+								"com"
+							],
+							"path": [
+								"api",
+								"usuario",
+								"nicolas.neoma@example.org",
+								"consumo"
+							],
+							"query": [
+								{
+									"key": "producto",
+									"value": "5"
+								},
+								{
+									"key": "cantidad",
+									"value": "1000"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "club.com/api/usuario/nicolas.neoma@example.org/consumo/808",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "club.com/api/usuario/nicolas.neoma@example.org/consumo/808",
+							"host": [
+								"club",
+								"com"
+							],
+							"path": [
+								"api",
+								"usuario",
+								"nicolas.neoma@example.org",
+								"consumo",
+								"808"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "RegistroClase",
+			"item": [
+				{
+					"name": "club.com/api/usuario/gerhold.jedediah@example.net/clase",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "club.com/api/usuario/gerhold.jedediah@example.net/clase?id_clase=5",
+							"host": [
+								"club",
+								"com"
+							],
+							"path": [
+								"api",
+								"usuario",
+								"gerhold.jedediah@example.net",
+								"clase"
+							],
+							"query": [
+								{
+									"key": "id_clase",
+									"value": "5"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "club.com/api/usuario/gerhold.jedediah@example.net/clase/26",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "club.com/api/usuario/gerhold.jedediah@example.net/clase/26",
+							"host": [
+								"club",
+								"com"
+							],
+							"path": [
+								"api",
+								"usuario",
+								"gerhold.jedediah@example.net",
+								"clase",
+								"26"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "club.com/api/usuario/gerhold.jedediah@example.net/clase/26?estado=0",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "club.com/api/usuario/gerhold.jedediah@example.net/clase/26?estado=0",
+							"host": [
+								"club",
+								"com"
+							],
+							"path": [
+								"api",
+								"usuario",
+								"gerhold.jedediah@example.net",
+								"clase",
+								"26"
+							],
+							"query": [
+								{
+									"key": "estado",
+									"value": "0"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "club.com/api/usuario/gerhold.jedediah@example.net/clase/26",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "club.com/api/usuario/gerhold.jedediah@example.net/clase/26",
+							"host": [
+								"club",
+								"com"
+							],
+							"path": [
+								"api",
+								"usuario",
+								"gerhold.jedediah@example.net",
+								"clase",
+								"26"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "club.com/api/usuario/gerhold.jedediah@example.net/clase",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "club.com/api/usuario/gerhold.jedediah@example.net/clase",
+							"host": [
+								"club",
+								"com"
+							],
+							"path": [
+								"api",
+								"usuario",
+								"gerhold.jedediah@example.net",
+								"clase"
+							]
+						}
+					},
+					"response": []
+				}
+			]
 		}
 	]
 }
