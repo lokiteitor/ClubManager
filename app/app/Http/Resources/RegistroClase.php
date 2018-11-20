@@ -20,7 +20,7 @@ class RegistroClase extends JsonResource
             'id' => $this->id,
             'usuario' => $this->email,
             'estado' => $this->estado,
-            'clase' => new ClaseResource(Clase::find($request->id_clase))            
+            'clase' => new ClaseResource(Clase::find($this->id_clase))
         ];
     }
 }

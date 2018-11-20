@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Http\Resources\Activadad as ActividadResource;
+use App\Http\Resources\Actividad as ActividadResource;
 use App\Actividad;
 
 class ActividadController extends Controller
@@ -32,6 +32,7 @@ class ActividadController extends Controller
             'nombre' => $request->nombre,
             'descripcion' => $request->descripcion,
             'fecha_inicio' => $request->finicio,
+            'fecha_fin' => $request->ffin,
             'lugar' => $request->lugar
         ]);
 
@@ -47,7 +48,7 @@ class ActividadController extends Controller
     public function show($id)
     {
         //
-        return ActividadResource(Actividad::findOrFail($id));
+        return new ActividadResource(Actividad::findOrFail($id));
     }
 
     /**

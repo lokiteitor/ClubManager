@@ -3,6 +3,9 @@
 namespace App\Http\Resources;
 
 use Illuminate\Http\Resources\Json\JsonResource;
+use App\Http\Resources\Producto as ProductoResource;
+use App\Resource;
+use App\Producto;
 
 class RegistroConsumo extends JsonResource
 {
@@ -16,8 +19,8 @@ class RegistroConsumo extends JsonResource
     {
         return [
             'id' => $this->id,
-            'cliente' => $this->cliente,
-            'producto' => new ProductoResource(Producto::find($request->producto)),
+            'cliente' => $this->id_usuario,
+            'producto' => new ProductoResource(Producto::find($this->id_producto)),
             'cantidad' => $this->cantidad
         ];    
     }

@@ -15,7 +15,7 @@ class Usuario extends Model
     
     public function registrosConsumos()
     {
-        return $this->hasMany('App\RegistroConsumo','id_usuario','email');
+        return $this->hasMany('App\RegistroConsumo','id_usuario');
     }
 
     public function registrosClase()

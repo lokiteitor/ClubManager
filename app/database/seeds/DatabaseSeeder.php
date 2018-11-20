@@ -48,7 +48,10 @@ class DatabaseSeeder extends Seeder
                 }
                 // registrarlos a unas clases
                 for ($i=0; $i < mt_rand(1,10); $i++) { 
-                    $usuario->clases()->save($this->actividades->random()->clases()->get()->random());
+                    $usuario->clases()->save(factory(App\RegistroClase::class)->create([
+                        'email' => $usuario->email,
+                        'id_clase' => $this->actividades->random()->clases()->get()->random()
+                    ]));
                 }
             }
         });

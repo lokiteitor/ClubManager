@@ -26,6 +26,8 @@ class CuentaController extends Controller
             'estado' => $request->estado,
             'subtotal' => $request->subtotal
         ]);
+
+        return new CuentaResource($cuenta);
     }
 
     /**
@@ -51,9 +53,12 @@ class CuentaController extends Controller
     {
         //
         $cuenta = Cuenta::findOrFail($id);
-        $cuenta->update($request->only/([
-            'fecha_inicio','fecha_fin','estado','subtotal'
-        ]));
+        $cuenta->fecha_inicio = $request->fecha_inicio;
+        $cuenta->fecha_fin = $request->fecha_fin;
+        $cuenta->estado = $request->estado;
+        $cuenta->subtotal = $request->subtotal;
+        $cuenta->save();
+        return new CuentaResource($cuenta);
     }
 
     /**

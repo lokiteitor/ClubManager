@@ -1,0 +1,812 @@
+{
+	"info": {
+		"_postman_id": "eece2b9c-e294-45dd-bda8-9636ed9ceaa0",
+		"name": "ClubManager",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Usuarios",
+			"item": [
+				{
+					"name": "club.com/api/usuario",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "club.com/api/usuario",
+							"host": [
+								"club",
+								"com"
+							],
+							"path": [
+								"api",
+								"usuario"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "club.com/api/usuario?email=lokiteitor513@gmail.com&nombre=David&ap_paterno=delgado&ap_materno=hernandea&direccion=otra direccion&password=pass&telefono=4444 1000 1000&tipo=cliente",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "club.com/api/usuario?email=lokiteitor513@gmail.com&nombre=David&ap_paterno=delgado&ap_materno=hernandea&direccion=otra direccion&password=pass&telefono=4444 1000 1000&tipo=cliente",
+							"host": [
+								"club",
+								"com"
+							],
+							"path": [
+								"api",
+								"usuario"
+							],
+							"query": [
+								{
+									"key": "email",
+									"value": "lokiteitor513@gmail.com"
+								},
+								{
+									"key": "nombre",
+									"value": "David"
+								},
+								{
+									"key": "ap_paterno",
+									"value": "delgado"
+								},
+								{
+									"key": "ap_materno",
+									"value": "hernandea"
+								},
+								{
+									"key": "direccion",
+									"value": "otra direccion"
+								},
+								{
+									"key": "password",
+									"value": "pass"
+								},
+								{
+									"key": "telefono",
+									"value": "4444 1000 1000"
+								},
+								{
+									"key": "tipo",
+									"value": "cliente"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "club.com/api/usuario/lokiteitor513@gmail.com",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "club.com/api/usuario/lokiteitor513@gmail.com",
+							"host": [
+								"club",
+								"com"
+							],
+							"path": [
+								"api",
+								"usuario",
+								"lokiteitor513@gmail.com"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "club.com/api/usuario?email=lokiteitor513@gmail.com&nombre=Otro nombre&ap_paterno=delgado&ap_materno=hernandea&direccion=otra direccion&password=pass&telefono=4444 1000 1000&tipo=cliente",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "club.com/api/usuario/lokiteitor513@gmail.com?nombre=Otro Nombre&ap_paterno=delgado&ap_materno=hernandea&direccion=otra direccion&password=pass&telefono=4444 1000 1000&tipo=cliente",
+							"host": [
+								"club",
+								"com"
+							],
+							"path": [
+								"api",
+								"usuario",
+								"lokiteitor513@gmail.com"
+							],
+							"query": [
+								{
+									"key": "nombre",
+									"value": "Otro Nombre"
+								},
+								{
+									"key": "ap_paterno",
+									"value": "delgado"
+								},
+								{
+									"key": "ap_materno",
+									"value": "hernandea"
+								},
+								{
+									"key": "direccion",
+									"value": "otra direccion"
+								},
+								{
+									"key": "password",
+									"value": "pass"
+								},
+								{
+									"key": "telefono",
+									"value": "4444 1000 1000"
+								},
+								{
+									"key": "tipo",
+									"value": "cliente"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "club.com/api/usuario/lokiteitor513@gmail.com",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "club.com/api/usuario/lokiteitor513@gmail.com",
+							"host": [
+								"club",
+								"com"
+							],
+							"path": [
+								"api",
+								"usuario",
+								"lokiteitor513@gmail.com"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Productos",
+			"item": [
+				{
+					"name": "club.com/api/producto",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "club.com/api/producto",
+							"host": [
+								"club",
+								"com"
+							],
+							"path": [
+								"api",
+								"producto"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "club.com/api/producto?nombre=mi producto&descripcion=mi descripcion&precio=40.50&costo=20",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "club.com/api/producto?nombre=mi producto&descripcion=mi descripcion&precio=40.50&costo=20",
+							"host": [
+								"club",
+								"com"
+							],
+							"path": [
+								"api",
+								"producto"
+							],
+							"query": [
+								{
+									"key": "nombre",
+									"value": "mi producto"
+								},
+								{
+									"key": "descripcion",
+									"value": "mi descripcion"
+								},
+								{
+									"key": "precio",
+									"value": "40.50"
+								},
+								{
+									"key": "costo",
+									"value": "20"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "club.com/api/producto/1401",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "club.com/api/producto/1401",
+							"host": [
+								"club",
+								"com"
+							],
+							"path": [
+								"api",
+								"producto",
+								"1401"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "club.com/api/producto/1401?nombre=mi producto&descripcion=cambio descripcion&precio=40.50&costo=20",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "club.com/api/producto/1401?nombre=mi producto&descripcion=cambio descripcion&precio=40.50&costo=20",
+							"host": [
+								"club",
+								"com"
+							],
+							"path": [
+								"api",
+								"producto",
+								"1401"
+							],
+							"query": [
+								{
+									"key": "nombre",
+									"value": "mi producto"
+								},
+								{
+									"key": "descripcion",
+									"value": "cambio descripcion"
+								},
+								{
+									"key": "precio",
+									"value": "40.50"
+								},
+								{
+									"key": "costo",
+									"value": "20"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "club.com/api/producto/1401",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "club.com/api/producto/1401",
+							"host": [
+								"club",
+								"com"
+							],
+							"path": [
+								"api",
+								"producto",
+								"1401"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Cuentas",
+			"item": [
+				{
+					"name": "club.com/api/cuenta?cliente=lokiteitor513@gmail.com&finicio=2018-11-19&ffin=2018-11-25&estado=0&subtotal=4000.15",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "club.com/api/cuenta?cliente=lokiteitor513@gmail.com&finicio=2018-11-19&ffin=2018-11-25&estado=0&subtotal=4000.15",
+							"host": [
+								"club",
+								"com"
+							],
+							"path": [
+								"api",
+								"cuenta"
+							],
+							"query": [
+								{
+									"key": "cliente",
+									"value": "lokiteitor513@gmail.com"
+								},
+								{
+									"key": "finicio",
+									"value": "2018-11-19"
+								},
+								{
+									"key": "ffin",
+									"value": "2018-11-25"
+								},
+								{
+									"key": "estado",
+									"value": "0"
+								},
+								{
+									"key": "subtotal",
+									"value": "4000.15"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "club.com/api/cuenta/835",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "club.com/api/cuenta/835?fecha_inicio=2018-11-19&fecha_fin=2018-11-25&estado=1&subtotal=4000.15",
+							"host": [
+								"club",
+								"com"
+							],
+							"path": [
+								"api",
+								"cuenta",
+								"835"
+							],
+							"query": [
+								{
+									"key": "cliente",
+									"value": "lokiteitor513@gmail.com",
+									"disabled": true
+								},
+								{
+									"key": "fecha_inicio",
+									"value": "2018-11-19"
+								},
+								{
+									"key": "fecha_fin",
+									"value": "2018-11-25"
+								},
+								{
+									"key": "estado",
+									"value": "1"
+								},
+								{
+									"key": "subtotal",
+									"value": "4000.15"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "club.com/api/cuenta/835",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "club.com/api/cuenta/835",
+							"host": [
+								"club",
+								"com"
+							],
+							"path": [
+								"api",
+								"cuenta",
+								"835"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "club.com/api/cuenta/835",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "club.com/api/cuenta/835",
+							"host": [
+								"club",
+								"com"
+							],
+							"path": [
+								"api",
+								"cuenta",
+								"835"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Clase",
+			"item": [
+				{
+					"name": "club.com/api/clase?id_actividad=5&hinicio=12:00:00&hfin=14:00:00&dia=L&profesor=lokiteitor513@gmail.com",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "club.com/api/clase?id_actividad=5&hinicio=12:00:00&hfin=14:00:00&dia=L&profesor=lokiteitor513@gmail.com",
+							"host": [
+								"club",
+								"com"
+							],
+							"path": [
+								"api",
+								"clase"
+							],
+							"query": [
+								{
+									"key": "id_actividad",
+									"value": "5"
+								},
+								{
+									"key": "hinicio",
+									"value": "12:00:00"
+								},
+								{
+									"key": "hfin",
+									"value": "14:00:00"
+								},
+								{
+									"key": "dia",
+									"value": "L"
+								},
+								{
+									"key": "profesor",
+									"value": "lokiteitor513@gmail.com"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "club.com/api/clase/208",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "club.com/api/clase/208",
+							"host": [
+								"club",
+								"com"
+							],
+							"path": [
+								"api",
+								"clase",
+								"208"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "club.com/api/clase/208?id_actividad=5&hinicio=12:00:00&hfin=14:00:00&dia=L",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "club.com/api/clase/208?id_actividad=5&hinicio=12:00:00&hfin=14:00:00&dia=L",
+							"host": [
+								"club",
+								"com"
+							],
+							"path": [
+								"api",
+								"clase",
+								"208"
+							],
+							"query": [
+								{
+									"key": "id_actividad",
+									"value": "5"
+								},
+								{
+									"key": "hinicio",
+									"value": "12:00:00"
+								},
+								{
+									"key": "hfin",
+									"value": "14:00:00"
+								},
+								{
+									"key": "dia",
+									"value": "L"
+								},
+								{
+									"key": "profesor",
+									"value": "lokiteitor513@gmail.com",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "club.com/api/clase/208",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "club.com/api/clase/208",
+							"host": [
+								"club",
+								"com"
+							],
+							"path": [
+								"api",
+								"clase",
+								"208"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Actividad",
+			"item": [
+				{
+					"name": "club.com/api/actividad",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "club.com/api/actividad",
+							"host": [
+								"club",
+								"com"
+							],
+							"path": [
+								"api",
+								"actividad"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "club.com/api/actividad?nombre=Mi actividad&descripcion=Otra actividad mas&finicio=2018-11-20&ffin=2018-11-30&lugar=sala 1",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "club.com/api/actividad?nombre=Mi actividad&descripcion=Otra actividad mas&finicio=2018-11-20&ffin=2018-11-30&lugar=sala 1",
+							"host": [
+								"club",
+								"com"
+							],
+							"path": [
+								"api",
+								"actividad"
+							],
+							"query": [
+								{
+									"key": "nombre",
+									"value": "Mi actividad"
+								},
+								{
+									"key": "descripcion",
+									"value": "Otra actividad mas"
+								},
+								{
+									"key": "finicio",
+									"value": "2018-11-20"
+								},
+								{
+									"key": "ffin",
+									"value": "2018-11-30"
+								},
+								{
+									"key": "lugar",
+									"value": "sala 1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "club.com/api/actividad/171",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "club.com/api/actividad/171",
+							"host": [
+								"club",
+								"com"
+							],
+							"path": [
+								"api",
+								"actividad",
+								"171"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "club.com/api/actividad/171?nombre=Mi actividad&descripcion=Cambiemos esto&finicio=2018-11-20&ffin=2018-11-30&lugar=sala 1",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "club.com/api/actividad/171?nombre=Mi actividad&descripcion=Cambiemos esto&finicio=2018-11-20&ffin=2018-11-30&lugar=sala 1",
+							"host": [
+								"club",
+								"com"
+							],
+							"path": [
+								"api",
+								"actividad",
+								"171"
+							],
+							"query": [
+								{
+									"key": "nombre",
+									"value": "Mi actividad"
+								},
+								{
+									"key": "descripcion",
+									"value": "Cambiemos esto"
+								},
+								{
+									"key": "finicio",
+									"value": "2018-11-20"
+								},
+								{
+									"key": "ffin",
+									"value": "2018-11-30"
+								},
+								{
+									"key": "lugar",
+									"value": "sala 1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "club.com/api/actividad/171",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "club.com/api/actividad/171",
+							"host": [
+								"club",
+								"com"
+							],
+							"path": [
+								"api",
+								"actividad",
+								"171"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

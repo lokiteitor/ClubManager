@@ -37,7 +37,7 @@ class ClaseController extends Controller
     public function show($id)
     {
         //
-        return ClaseResource(Clase::findOrFail($id));
+        return new ClaseResource(Clase::findOrFail($id));
     }
 
     /**
@@ -51,7 +51,8 @@ class ClaseController extends Controller
     {
         //
         $clase = Clase::findOrFail($id);
-        $clase->update($request->only([                        
+        $clase->update($request->only([   
+            'id_actividad' => $request->id_actividad,
             'hora_inicio' => $request->hinicio,
             'hora_fin' => $request->hfin,
             'dia_semana' => $request->dia,

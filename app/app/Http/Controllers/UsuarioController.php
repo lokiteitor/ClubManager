@@ -4,6 +4,11 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Http\Resources\Usuario as UsuarioResource;
+use App\Http\Resources\RegistroConsumo as RegistroConsumoResource;
+use App\Http\Resources\RegistroConsumoCollection;
+use App\Http\Resources\RegistroClase as RegistroClaseResource;
+use App\RegistroClase;
+use App\RegistroConsumo;
 use App\Usuario;
 
 class UsuarioController extends Controller
@@ -82,6 +87,85 @@ class UsuarioController extends Controller
     {
         //
         Usuario::findOrFail($id)->delete();
+        return response()->json(null, 204);
+    }
+
+    public function indexConsumo(Request $request,$id)
+    {
+        // mostrar todos los consumos
+        $registros = Usuario::findOrFail($id)->registrosConsumos()->paginate(30);
+        return new RegistroConsumoCollection($registros);
+    }
+
+    public function storeConsumo(Request $request,$usuario)
+    {
+
+            $registro = RegistroConsumo::create([
+                'id_usuario' => $usuario,
+                'id_producto' => $request->producto,
+                'cantidad' => $request->cantidad
+            ]);
+
+        return new RegistroConsumoResource($registro);
+    }
+
+    public function showConsumo($id,$registro)
+    {
+        return new RegistroConsumoResource(Usuario::findOrFail($id)
+        ->registrosConsumos()->find($registro));
+    }
+
+    public function updateConsumo(Request $request,$id,$idregistro)
+    {
+        $registro = Usuario::findOrFail($id)->registrosConsumos()->find($idregistro);
+
+        $registro->id_producto = $request->id_producto;
+        $registro->cantidad = $request->cantidad;
+        $registro->save();
+
+        return new RegistroConsumoResource($registro);
+
+    }
+
+    public function destroyConsumo($id,$registro)
+    {
+        Usuario::findOrFail($id)->registrosConsumos()->find($registro)->delete();
+        return response()->json(null, 204);
+    }
+
+    public function indexClase($id)
+    {
+        $clases = Usuario::findOrFail($id)->registrosClase()->paginate(30);
+        return  RegistroClaseResource::collection($clases);
+    }
+
+    public function storeClase(Request $request,$id)
+    {
+        $clase = RegistroClase::create([
+            'email' => $id,
+            'id_clase' => $request->id_clase,
+            'estado' => 1
+        ]);
+
+        return new RegistroClaseResource($clase);
+    }
+    
+    public function showClase($id,$registro)
+    {
+        return new RegistroClaseResource(Usuario::findOrFail($id)->
+        registrosClase()->find($registro));
+    }
+
+    public function updateClase(Request $request,$id,$registro)
+    {
+        $clase = Usuario::findOrFail($id)->registrosClase()->find($registro);
+        $clase->estado = $request->estado;
+        $clase->save();
+        return new RegistroClaseResource($clase);
+    }
+    public function destroyClase($id,$registro)
+    {
+        Usuario::findOrFail($id)->registrosClase()->find($registro)->delete();
         return response()->json(null, 204);
     }
 }
