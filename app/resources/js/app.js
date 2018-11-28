@@ -14,6 +14,14 @@ import VueRouter from 'vue-router'
 import App from './views/app'
 import login from './views/login'
 import actividades from './views/actividades'
+import estadocuenta from './views/estadocuenta'
+import calendario from './views/calendario'
+/* Administrador */
+import empleadosadm from './views/empleadosadm'
+import clientesadm from './views/clientes'
+/* 3party */
+import fullCalendar from 'vue-fullcalendar'
+Vue.component('full-calendar', fullCalendar)
 
 Vue.use(VueRouter)
 
@@ -44,7 +52,39 @@ const router = new VueRouter({
             meta: {
                 title: 'Actividades'
             }
-        },        
+        },
+        {
+            path: '/cuenta',
+            name: 'cuenta',
+            component:estadocuenta,
+            meta: {
+                title: 'Estado de Cuenta'
+            }
+        },
+        {
+            path: '/calendario',
+            name: 'calendario',
+            component: calendario,
+            meta:{
+                title: 'Actividades Reservadas'
+            }
+        },
+        {
+            path: '/administrador/empleados',
+            name: empleadosadm,
+            component: empleadosadm,
+            meta:{
+                title: 'Empleados'
+            }
+        },
+        {
+            path: '/administrador/clientes',
+            name: 'clientesadm',
+            component: clientesadm,
+            meta:{
+                title: 'Clientes'
+            }
+        }        
 
     ],
 });
