@@ -20,7 +20,8 @@ class Usuario extends JsonResource
             'ap_paterno' => $this->ap_paterno,
             'ap_materno' => $this->ap_materno,
             'direccion' => $this->direccion,
-            'telefono' => $this->telefono
+            'telefono' => $this->telefono,
+            'tipo' => $this->empleado
         ];
     }
 }

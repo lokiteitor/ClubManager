@@ -10,19 +10,19 @@
                 <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
                     <!-- TODO: Activar el class si se encuentra en esa pagina -->
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Inicio</a>
+                        <router-link :to="{name:'login'}" class="nav-link">Inicio</router-link>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Actividades</a>
+                        <router-link :to="{name:'actividades'}" class="nav-link">Actividades</router-link>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link">Estado de cuenta</a>
+                        <router-link :to="{name:'cuenta'}" class="nav-link">Cuenta</router-link>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link">Calendario</a>
+                        <router-link :to="{name:'calendario'}" class="nav-link">Calendario</router-link>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link">Empleados</a>
+                        <router-link :to="{name:'empleadosadm'}" class="nav-link">Empleados</router-link>
                     </li>
                     <div class="dropdown">
                         <button class="btn btn-light dropdown-toggle" type="button" id="triggerCliente" data-toggle="dropdown" aria-haspopup="true"
@@ -30,19 +30,19 @@
                                     Clientes
                                 </button>
                         <div class="dropdown-menu" aria-labelledby="triggerCliente">
-                            <a class="dropdown-item" href="#">Registrar y Modificar</a>
-                            <a class="dropdown-item " href="#">Estado de cuenta</a>
+                            <router-link :to="{name:'clientesadm'}" class="dropdown-item" href="#">Registrar y Modificar</router-link>
+                            <router-link :to="{name:'clientecuenta'}" class="dropdown-item " href="#">Estado de cuenta</router-link>
                         </div>
                     </div>
+                    <li class="nav-item">
+                        <a class="nav-link">Logout</a>
+                    </li>                    
                 </ul>
-                <!-- Mostrar cuando esta en la pestaña actividades -->
-                <form class="form-inline my-2 my-lg-0">
-                    <input class="form-control mr-sm-2" type="text" placeholder="Buscar">
-                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Buscar</button>
-                </form>
+
+
             </div>
         </nav>   
         <br>     
-        <router-view></router-view>         
+        <router-view ></router-view>         
     </div>
 </template>

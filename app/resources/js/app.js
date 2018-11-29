@@ -19,6 +19,7 @@ import calendario from './views/calendario'
 /* Administrador */
 import empleadosadm from './views/empleadosadm'
 import clientesadm from './views/clientes'
+import clientecuenta from './views/cuenta'
 /* 3party */
 import fullCalendar from 'vue-fullcalendar'
 Vue.component('full-calendar', fullCalendar)
@@ -71,18 +72,26 @@ const router = new VueRouter({
         },
         {
             path: '/administrador/empleados',
-            name: empleadosadm,
+            name: 'empleadosadm',
             component: empleadosadm,
             meta:{
                 title: 'Empleados'
             }
         },
         {
-            path: '/administrador/clientes',
+            path: '/administrador/clientes/registrar',
             name: 'clientesadm',
             component: clientesadm,
             meta:{
                 title: 'Clientes'
+            }
+        },
+        {
+            path: '/administrador/clientes/cuenta',
+            name: 'clientecuenta',
+            component: clientecuenta,
+            meta: {
+                title: 'Estado de cuenta del cliente'
             }
         }        
 

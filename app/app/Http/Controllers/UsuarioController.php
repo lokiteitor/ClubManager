@@ -10,6 +10,8 @@ use App\Http\Resources\RegistroClase as RegistroClaseResource;
 use App\RegistroClase;
 use App\RegistroConsumo;
 use App\Usuario;
+use Validator;
+
 
 class UsuarioController extends Controller
 {
@@ -34,6 +36,23 @@ class UsuarioController extends Controller
     public function store(Request $request)
     {
         //
+        $rules = [
+            'email' => 'required',
+            'nombre' => 'required',
+            'ap_paterno' => 'required',
+            'ap_materno' => 'required',
+            'direccion' => 'required',
+            'password' => 'required',
+            'telefono' => 'required',
+            'tipo' => 'required'
+        ];
+
+        $validador = Validator::make($request->all(),$rules);
+        if($validador->fails()){
+            $errors = $validador->errors();
+            return response()->json($errors, 422);
+        }
+                
         $usuario = Usuario::create([
             'email' => $request->email,
             'nombre' => $request->nombre,
@@ -53,10 +72,20 @@ class UsuarioController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Request $request,$id)
     {
         //
-        return new UsuarioResource(Usuario::findOrFail($id));
+        $usuario = Usuario::findOrFail($id);
+        if($request->cliente == 'true' && $usuario->empleado != 'cliente'){
+            return response()->json(['mensaje' => 'El usuario no es cliente'],422);
+        }
+        else if(($request->cliente == 'false' )&& $usuario->empleado == 'cliente'){
+            return response()->json(['mensaje' => 'El usuario no es empleado'],422);
+        }
+        else{
+            return new UsuarioResource($usuario);
+        }
+        
     }
 
     /**
@@ -72,7 +101,7 @@ class UsuarioController extends Controller
         $usuario = Usuario::findOrFail($id);
         $usuario->update($request->only([
             'email','nombre','ap_paterno','ap_materno','direccion',
-            'password','telefono'
+            'password','telefono','empleado','password'
         ]));
         return new UsuarioResource($usuario);
     }
@@ -93,7 +122,7 @@ class UsuarioController extends Controller
     public function indexConsumo(Request $request,$id)
     {
         // mostrar todos los consumos
-        $registros = Usuario::findOrFail($id)->registrosConsumos()->paginate(30);
+        $registros = Usuario::findOrFail($id)->registrosConsumos()->get();
         return new RegistroConsumoCollection($registros);
     }
 
