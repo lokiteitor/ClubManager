@@ -45,7 +45,9 @@ export default {
             default:false
         }
     },    
-    // TODO: Computar el clienteid cuando isCliente y haci cargar los datos en automatico
+    created(){
+        this.precargar()
+    },
     data(){
         return{
             clienteid : '',
@@ -81,9 +83,12 @@ export default {
                 })
             })
         },
-        pagar(){
-            
-        }
+        precargar(){
+            if(localStorage.getItem('tipo') == 'cliente'){
+                this.clienteid = localStorage.getItem('usuario');
+                this.getData()
+            }
+        }        
     }    
 }
 </script>

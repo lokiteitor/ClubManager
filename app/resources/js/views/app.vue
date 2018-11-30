@@ -8,23 +8,19 @@
             </button>
             <div class="collapse navbar-collapse" id="collapsibleNavId">
                 <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-                    <!-- TODO: Activar el class si se encuentra en esa pagina -->
                     <li class="nav-item">
-                        <router-link :to="{name:'login'}" class="nav-link">Inicio</router-link>
+                        <router-link :to="{name:'actividades'}" class="nav-link" v-if="tipo == 'cliente' && isLoggedIn">Actividades</router-link>
                     </li>
                     <li class="nav-item">
-                        <router-link :to="{name:'actividades'}" class="nav-link">Actividades</router-link>
+                        <router-link :to="{name:'cuenta'}" class="nav-link" v-if="tipo == 'cliente' && isLoggedIn" >Cuenta</router-link>
                     </li>
-                    <li class="nav-item">
-                        <router-link :to="{name:'cuenta'}" class="nav-link">Cuenta</router-link>
-                    </li>
-                    <li class="nav-item">
+ <!--                    <li class="nav-item">
                         <router-link :to="{name:'calendario'}" class="nav-link">Calendario</router-link>
-                    </li>
+                    </li> -->
                     <li class="nav-item">
-                        <router-link :to="{name:'empleadosadm'}" class="nav-link">Empleados</router-link>
+                        <router-link :to="{name:'empleadosadm'}" class="nav-link" v-if="tipo != 'cliente' && isLoggedIn" >Empleados</router-link>
                     </li>
-                    <div class="dropdown">
+                    <div class="dropdown" v-if="tipo != 'cliente' && isLoggedIn">
                         <button class="btn btn-light dropdown-toggle" type="button" id="triggerCliente" data-toggle="dropdown" aria-haspopup="true"
                                 aria-expanded="false">
                                     Clientes
@@ -35,7 +31,10 @@
                         </div>
                     </div>
                     <li class="nav-item">
-                        <a class="nav-link">Logout</a>
+                        <router-link :to="{name:'login'}" class="nav-link" v-if="!isLoggedIn">Login</router-link>
+                    </li>                    
+                    <li class="nav-item">
+                        <a class="nav-link" @click="logout" v-if="isLoggedIn">Logout</a>
                     </li>                    
                 </ul>
 
@@ -46,3 +45,28 @@
         <router-view ></router-view>         
     </div>
 </template>
+<script>
+export default {
+    computed: {
+        isLoggedIn : function(){ return this.$store.getters.isLoggedIn},
+        tipo : function(){return this.tipousuario}
+    },
+    data(){
+        return{
+            tipousuario: localStorage.getItem('tipo')
+        }
+    },
+    methods: {
+    logout: function () {
+        this.$store.dispatch('logout')
+        .then(() => {
+        this.$router.push('/')
+        }).catch(err => {
+            console.log(err)
+        })
+    }
+    },        
+    
+}
+</script>
+

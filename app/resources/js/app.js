@@ -23,8 +23,20 @@ import clientecuenta from './views/cuenta'
 /* 3party */
 import fullCalendar from 'vue-fullcalendar'
 Vue.component('full-calendar', fullCalendar)
+/* Extras */
+import store from './store'
+
+const token = localStorage.getItem('token')
+if (token) {
+  axios.defaults.headers.common['Authorization'] = token
+}
+Vue.prototype.$store = store;
+Vue.prototype.$router = router
+
 
 Vue.use(VueRouter)
+
+
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
@@ -100,8 +112,19 @@ const router = new VueRouter({
 
 /* Antes de mostrar modificar titulo de pagina y validar autentificacion */
 router.beforeEach((to,from,next) => {
-    document.title = _.defaultTo(to.meta.title,'')
-    next()
+    document.title = _.defaultTo(to.meta.title, '');
+    if(to.matched.some(record => record.meta.requiresAuth)){
+        if(store.getters.isLoggedIn){
+            next()            
+        }
+        else{
+            next('/login')
+            
+        }
+    }
+    else{
+        next()
+    }
 })
 
 

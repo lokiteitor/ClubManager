@@ -28,8 +28,8 @@
                   <div class="col-md-4">
                     <div class="form-group">
                       <label for="horarios">Horarios Disponibles</label>
-                      <select class="form-control" name="horarios" id="horarios">
-                        <option v-for="horario in horarios" v-bind:key="horario.index" >{{horario.hinicio}} - {{horario.hfin}}</option>
+                      <select class="form-control" name="horarios" id="horarios" v-model="clase">
+                        <option v-for="horario in horarios" v-bind:key="horario.index" v-bind:value="horario.id" >{{horario.hinicio}} - {{horario.hfin}}</option>
                       </select>
                     </div>
                   </div>
@@ -39,7 +39,7 @@
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-              <button type="button" class="btn btn-primary">Reservar lugar</button>
+              <button type="button" class="btn btn-primary" @click="reservar">Reservar lugar</button>
             </div>
           </div>
         </div>
@@ -63,7 +63,15 @@ export default {
   data(){
     return{
       localActividad:idAct,
-      horarios:[]
+      horarios:[],
+      clase: null
+    }
+  },
+  computed:{
+    formRegistro(){
+      return{
+        id_clase:this.clase
+      }
     }
   },
 
@@ -76,7 +84,8 @@ export default {
         datos.forEach(element => {
           let registro = {
             'hinicio':element.hinicio,
-            'hfin': element.hfin
+            'hfin': element.hfin,
+            'id' : element.id
           }
           this.horarios.push(registro)
         });
@@ -86,6 +95,21 @@ export default {
           type:'error',
           title:'Error al consultar',
           text: 'Se produjo un error al realizar la consulta'
+        })
+      })
+    },
+    reservar(){
+      axios.post('/api/usuario/'+localStorage.getItem('usuario')+'/clase',this.formRegistro).then(res => {
+        swal({
+          type:'success',
+          title:'Registro exitoso',
+          text: 'El registro se completo correctamente'
+        }).catch(err => {
+          swal({
+            type: 'error',
+            title: 'Error durante el registro',
+            text: 'El registro no se pudo completar'
+          })
         })
       })
     }

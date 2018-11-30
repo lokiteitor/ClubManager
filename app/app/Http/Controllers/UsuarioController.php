@@ -170,6 +170,15 @@ class UsuarioController extends Controller
 
     public function storeClase(Request $request,$id)
     {
+        $rules = [
+            'id_clase' => 'required',
+        ];
+
+        $validador = Validator::make($request->all(),$rules);
+        if($validador->fails()){
+            $errors = $validador->errors();
+            return response()->json($errors, 422);
+        }        
         $clase = RegistroClase::create([
             'email' => $id,
             'id_clase' => $request->id_clase,
@@ -197,4 +206,33 @@ class UsuarioController extends Controller
         Usuario::findOrFail($id)->registrosClase()->find($registro)->delete();
         return response()->json(null, 204);
     }
+
+    public function login(Request $request)
+    {
+        $rules = [
+            'usuario' => 'required',
+            'password' => 'required'
+        ];
+
+        $validador = Validator::make($request->all(),$rules);
+        if($validador->fails()){
+            $errors = $validador->errors();
+            return response()->json($errors, 401);
+        }
+        
+        $usuario = Usuario::findOrFail($request->usuario);
+
+        if($request->password != $usuario->password){
+            return response()->json(['status'=>false],401);
+        }
+
+        return response()->json([
+            'status' => true,
+            'usuario' => $request->usuario,
+            'token' => env('TOKEN'),
+            'tipo' => $usuario->empleado
+        ],200);
+
+    }
+
 }
