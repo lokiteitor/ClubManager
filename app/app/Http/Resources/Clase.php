@@ -18,8 +18,7 @@ class Clase extends JsonResource
     {
         return [
             'id' => $this->id,
-            'actividad' => new ActividadResource(
-                Actividad::find($this->id_actividad)),
+            'actividad' => $this->id_actividad,
             'hinicio' => $this->hora_inicio,
             'hfin' => $this->hora_fin,
             'dsemana' => $this->dia_semana,

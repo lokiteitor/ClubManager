@@ -33,3 +33,4 @@ Route::post('usuario/{id}/clase','UsuarioController@storeClase');
 Route::patch('usuario/{id}/clase/{registro}','UsuarioController@updateClase');
 Route::get('usuario/{id}/clase/{registro}','UsuarioController@showClase');
 Route::delete('usuario/{id}/clase/{registro}','UsuarioController@destroyClase');
+Route::get('actividad/{id}/clases','ActividadController@getClases');

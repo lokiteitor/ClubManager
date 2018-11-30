@@ -1,49 +1,94 @@
 <template>
-  <div>
-    <div class="card text-left col-sm-6 col-md-4">
-      <img class="card-img-top " src="https://www.nacion.com/resizer/SEmajeLrQgnow0RAiFilMFpA-nE=/600x0/center/middle/filters:quality(100)/arc-anglerfish-arc2-prod-gruponacion.s3.amazonaws.com/public/2ID7LLF6U5DNBHKLP6JWRHEG4A.jpg">
+    <div class="card text-left">
       <div class="card-body">
-        <h4 class="card-title">Nombre actividad</h4>
-        <h5 class="card-title">Descripcion</h5>
-        <p class="card-text">Something</p>
+        <h4 class="card-title">{{actividad.nombre}}</h4>
+        <p class="card-text">{{actividad.descripcion}}</p>
         <!-- Button trigger modal -->
-        <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#infoActividad">
+        <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" v-bind:data-target="'#id'+actividad.nombre" @click="mdetalles">
           Ver Actividad
         </button>        
       </div>
-    </div>    
     <!-- Modal -->
-    <div class="modal fade" id="infoActividad" tabindex="-1" role="dialog">
-      <div class="modal-dialog" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title">Titulo de la actividad</h5>
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-              </button>
-          </div>
-          <div class="modal-body">
-            <div class="container-fluid">
-              <div class="row">
-                <div class="col-md-8">
-                  <p>Descripcion de la actividadasdad
-                    adsd 
-                    asd 
-                  </p>
-                </div>
-                <div class="col-md-4">
-                  <img class="img-fluid img.thumbnail"  src="https://www.nacion.com/resizer/SEmajeLrQgnow0RAiFilMFpA-nE=/600x0/center/middle/filters:quality(100)/arc-anglerfish-arc2-prod-gruponacion.s3.amazonaws.com/public/2ID7LLF6U5DNBHKLP6JWRHEG4A.jpg">
-                </div>
-              </div>  
+      <div class="modal fade" v-bind:id="'id'+actividad.nombre" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title">{{actividad.nombre}}</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
             </div>
-            
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-            <button type="button" class="btn btn-primary">Reservar lugar</button>
+            <div class="modal-body">
+              <div class="container-fluid">
+                <div class="row">
+                  <div class="col-md-8">
+                    <p>{{actividad.descripcion}}
+                    </p>
+                  </div>
+                  <div class="col-md-4">
+                    <div class="form-group">
+                      <label for="horarios">Horarios Disponibles</label>
+                      <select class="form-control" name="horarios" id="horarios">
+                        <option v-for="horario in horarios" v-bind:key="horario.index" >{{horario.hinicio}} - {{horario.hfin}}</option>
+                      </select>
+                    </div>
+                  </div>
+                </div>  
+              </div>
+              
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+              <button type="button" class="btn btn-primary">Reservar lugar</button>
+            </div>
           </div>
         </div>
-      </div>
-    </div>
-  </div>
+      </div>      
+    </div>    
 </template>
+<script>
+var idAct = 0
+export default {
+  props:{
+    'actividad':'',
+    'idActividad':
+    {
+      default:null,
+      validator:function(value){
+        idAct = value
+        return true
+      }
+    }
+  },
+  data(){
+    return{
+      localActividad:idAct,
+      horarios:[]
+    }
+  },
+
+  methods:{
+    mdetalles(){
+      // Recolectar las clases registradas para estas actividades
+      axios.get('/api/actividad/'+this.localActividad+'/clases').then(res => {
+        this.horarios = []
+        let datos = res.data.data
+        datos.forEach(element => {
+          let registro = {
+            'hinicio':element.hinicio,
+            'hfin': element.hfin
+          }
+          this.horarios.push(registro)
+        });
+
+      }).catch(err => {
+        swal({
+          type:'error',
+          title:'Error al consultar',
+          text: 'Se produjo un error al realizar la consulta'
+        })
+      })
+    }
+  }  
+}
+</script>

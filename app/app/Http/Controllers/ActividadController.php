@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Resources\Actividad as ActividadResource;
 use App\Actividad;
+use App\Http\Resources\Clase as ClaseResource;
 
 class ActividadController extends Controller
 {
@@ -79,5 +80,11 @@ class ActividadController extends Controller
         //
         Actividad::findOrFail($id)->delete();
         return response()->json(null, 204);
+    }
+
+    public function getClases($id)
+    {
+        $actividad = Actividad::findOrFail($id)->clases()->get();
+        return ClaseResource::collection($actividad);
     }
 }

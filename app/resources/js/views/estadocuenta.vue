@@ -1,10 +1,10 @@
 <template>
-    <div class="container-fluid">
-        <tabla-cuenta></tabla-cuenta>
+    <div>
+        <tabla-cuenta isCliente="true"></tabla-cuenta>
     </div>
 </template>
 <script>
-import tabla from './../components/tablacuenta'
+import tabla from './cuenta'
 export default {
     components:{
         'tabla-cuenta':tabla

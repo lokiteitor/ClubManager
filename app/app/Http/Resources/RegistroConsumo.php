@@ -21,7 +21,8 @@ class RegistroConsumo extends JsonResource
             'id' => $this->id,
             'cliente' => $this->id_usuario,
             'producto' => new ProductoResource(Producto::find($this->id_producto)),
-            'cantidad' => $this->cantidad
+            'cantidad' => $this->cantidad,
+            'fecha' => date_format($this->created_at,'Y-m-d')
         ];    
     }
 }
